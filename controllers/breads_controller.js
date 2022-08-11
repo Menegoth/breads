@@ -15,21 +15,27 @@ breads.get("/", (req, res) => {
 
 // NEW
 breads.get("/new", (req, res) => {
-    res.render("new");
+    res.status(303).res.render("new");
+})
+
+//DELETE
+breads.delete("/:arrayIndex", (req, res) => {
+    Bread.splice(req.params.indexArray, 1);
+    res.status(303).redirect("/breads");
 })
 
 //SHOW
 breads.get("/:arrayIndex", (req, res) => {
     if (Bread[req.params.arrayIndex]) {
         res.render("Show", {
-            bread: Bread[req.params.arrayIndex]
+            bread: Bread[req.params.arrayIndex],
+            index: req.params.arrayIndex
         });
     } else {
         res.status(404).render("error404");
     }
 });
 
-//CREATE
 // CREATE
 breads.post('/', (req, res) => {
     if (!req.body.image) {
