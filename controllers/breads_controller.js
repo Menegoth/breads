@@ -24,6 +24,25 @@ breads.delete("/:arrayIndex", (req, res) => {
     res.status(303).redirect("/breads");
 })
 
+//UPDATE
+breads.put("/:arrayIndex", (req, res) => {
+    if (req.body.hasGluten === "on") {
+        req.body.hasGluten = true;
+    } else {
+        req.body.hasGluten = false;
+    }
+    Bread[req.params.arrayIndex] = req.body;
+    res.status(303).redirect(`/breads/${req.params.arrayIndex}`);
+})
+
+//EDIT
+breads.get("/:arrayIndex/edit", (req, res) => {
+    res.render("edit", {
+        bread: Bread[req.params.arrayIndex],
+        index: req.params.arrayIndex
+    })
+})
+
 //SHOW
 breads.get("/:arrayIndex", (req, res) => {
     if (Bread[req.params.arrayIndex]) {
