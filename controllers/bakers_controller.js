@@ -19,13 +19,23 @@ bakers.get("/", (req, res) => {
 
 bakers.get("/:id", (req, res) => {
     Baker.findById(req.params.id)
-        .populate("breads")
+        .populate({
+            path: "breads",
+            options: { limit: 2 }
+        })
         .then(foundBaker => {
             res.render("bakerShow", {
                 baker: foundBaker
             })
         })
 }) 
+
+bakers.delete("/:id", (req, res) => {
+    Baker.findByIdAndDelete(req.params.id)
+        .then(deletedBaker => {
+            res.status(303).redirect("/breads");
+        })
+})
 
 // export
 module.exports = bakers;                    

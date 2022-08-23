@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 //schema
 const breadSchema = new Schema ({
-    name: { type: String, required: true },
+    name: { type: String, required: true, default: "bread" },
     hasGluten: Boolean,
     image: { type: String, default: "http://placekitten.com/500/500" },
     baker: {

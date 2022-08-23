@@ -1,6 +1,7 @@
 //dependencies 
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const Bread = require("./bread.js")
 
 //schema
 const bakerSchema = new Schema({
@@ -22,6 +23,15 @@ bakerSchema.virtual("breads", {
     localField: "_id",
     foreignField: "baker"
 })
+
+//hooks
+bakerSchema.post("findOneAndDelete", function() {
+    Bread.deleteMany({ baker: this._conditions._id })
+        .then(deleteStatus => {
+            console.log(deleteStatus);
+        })
+})
+
 
 const Baker = mongoose.model("Baker", bakerSchema);
 module.exports = Baker;
