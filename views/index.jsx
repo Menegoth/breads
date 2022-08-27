@@ -1,5 +1,5 @@
 //dependencies
-const React = require("React");
+const React = require("react");
 const Default = require("./layouts/Default");
 
 function Index({breads, bakers, title}) {

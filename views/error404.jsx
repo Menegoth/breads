@@ -1,4 +1,4 @@
-const React = require("React");
+const React = require("react");
 const Default = require("./layouts/Default");
 
 function Error404() {
