@@ -17,12 +17,14 @@ breads.get("/", async (req, res) => {
 });
 
 //SEED
+/*
 breads.get("/data/seed", (req, res) => {
     Bread.insertMany(breadsTest)
         .then(createdBreads => {
             res.redirect("/breads")
         })
 })
+*/
 
 // NEW
 breads.get("/new", (req, res) => {
